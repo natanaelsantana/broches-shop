@@ -6,23 +6,24 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 
 
-const URI = process.env.URL;
+
+const URI = "https://broches.onrender.com/api/broches"
 
 const ProductDetails = () => {
-  const { idUnico } = useParams();
+  const { _id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${URI}/produtos/${idUnico}`);
+        const response = await axios.get(`${URI}/${_id}`);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchProduct();
-  }, [idUnico]);
+  }, [_id]);
 
   if (!product) {
     return <div>Loading...</div>;
@@ -31,12 +32,12 @@ const ProductDetails = () => {
   return (
     <div>
       <Header />
-      <h1>{product.name}</h1>
+      <h1>{product.nome}</h1>
       <p>{product.description}</p>
-      <p>Price: R${product.price.toFixed(2)}</p>
+      <p>Preço: R${product.preco.toFixed(2)}</p>
 
       <div>
-        {product.images.map((image, index) => (
+        {product.imagems?.map((image, index) => (
           <img src={image} alt={`${index}`} key={index} />
         ))}
       </div>

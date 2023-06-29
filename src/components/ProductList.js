@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+//import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 
+const URI = "https://broches.onrender.com/api/broches"
+
 const Products = () => {
-  const products = [
-    { idUnico: 542391, name: 'Broche de Coração', price: 10.99 },
-    { idUnico: "2", name: 'Broche de Estrela', price: 8.99 },
-    { idUnico: "3", name: 'Broche de Flor', price: 12.99 }
-  ];
+ // const { _id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`${URI}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="bg-white py-8">
@@ -53,12 +70,12 @@ const Products = () => {
         </nav>
         <div>
           <ul className="flex flex-wrap justify-center">
-            {products.map((product) => (
+            {product.map((product) => (
               <li
                 className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
-                key={product.idUnico}
+                key={product._id}
               >
-                <Link to={`/product/${product.idUnico}`}>
+                <Link to={`/product/${product._id}`}>
                   <img
                     className="hover:grow hover:shadow-lg"
                     src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
@@ -67,7 +84,7 @@ const Products = () => {
                   <div className="pt-3 flex items-center justify-between">
                     <h3>{product.name}</h3>
                     <p className="pt-1 text-gray-900">
-                      Preço: R${product.price.toFixed(2)}
+                      Preço: R${product.preco ? product.preco.toFixed(2): "N/A"}
                     </p>
                     <svg
                       className="h-6 w-6 fill-current text-gray-500 hover:text-black"
