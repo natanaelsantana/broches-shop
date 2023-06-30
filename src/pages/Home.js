@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
 //Routers
 
 //Principal components
-import Products from "../components/ProductList";
-
-
+import Products from '../components/ProductList';
 
 const Home = () => {
   return (
@@ -13,6 +11,6 @@ const Home = () => {
       <Products />
     </div>
   );
-}
+};
 
 export default Home;

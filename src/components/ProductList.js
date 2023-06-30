@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 //import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const URI = "https://broches.onrender.com/api/broches"
+const URI = 'https://broches.onrender.com/api/broches';
 
 const Products = () => {
- // const { _id } = useParams();
+  // const { _id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Products = () => {
   return (
     <section className="bg-white py-8">
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-        <nav id="store" className="w-full z-30 top-0 px-6 py-1">
+        <nav id="store" className="w-full z-28 top-0 px-6 py-1">
           <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
             <Link
               to="/"
@@ -84,7 +84,8 @@ const Products = () => {
                   <div className="pt-3 flex items-center justify-between">
                     <h3>{product.name}</h3>
                     <p className="pt-1 text-gray-900">
-                      Preço: R${product.preco ? product.preco.toFixed(2): "N/A"}
+                      Preço: R$
+                      {product.preco ? product.preco.toFixed(2) : 'N/A'}
                     </p>
                     <svg
                       className="h-6 w-6 fill-current text-gray-500 hover:text-black"
