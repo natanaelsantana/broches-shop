@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [password, setPassword] = useState('');
@@ -83,9 +84,12 @@ const Login = () => {
                   </a>
                 </div>
               </div>
-              <button className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700">
-                Sign in
-              </button>
+
+              <Link to="/">
+                <button className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700">
+                  Sign in
+                </button>
+              </Link>
               <p className="text-center font-medium">
                 Don&rsquo;t have an account?{' '}
                 <a className="text-red-500 hover:underline" href="/Cadastro">
