@@ -7,25 +7,28 @@ import ProductDetails from '../src/pages/ProductDetails';
 import Cart from '../src/pages/Cart';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { CartProvider } from './components/CartContext';
 
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <BrowserRouter>
-        <Header />
+      <CartProvider>
+        <BrowserRouter>
+          <Header />
 
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:_id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/resumo" element={<Resumo />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:_id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/resumo" element={<Resumo />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+            </Routes>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </div>
   );
 };
