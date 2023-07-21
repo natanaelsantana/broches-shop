@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useCartContext } from '../components/CartContext';
 
 import axios from 'axios';
 
@@ -8,6 +10,8 @@ const URI = 'https://broches.onrender.com/api/broches';
 const ProductDetails = () => {
   const { _id } = useParams();
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
+  const { addToCart } = useCartContext();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -25,6 +29,10 @@ const ProductDetails = () => {
     return <div>Loading...</div>;
   }
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    navigate('/cart');
+  };
   return (
     <div class="text-gray-700 body-font overflow-hidden bg-white">
       <div class="container px-5 py-24 mx-auto">
@@ -32,14 +40,14 @@ const ProductDetails = () => {
           <img
             alt="ecommerce"
             class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-            src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
+            src="https://as1.ftcdn.net/v2/jpg/02/25/61/42/1000_F_225614243_qdF4cO57yfihmCFsx6G24ZxJxa7OuAQb.jpg"
           ></img>
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 class="text-sm title-font text-gray-500 tracking-widest">
-              BRAND NAME
+              Exclusive
             </h2>
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-              The Catcher in the Rye
+              {product.nome}
             </h1>
             <div class="flex mb-4">
               <span class="flex items-center">
@@ -139,14 +147,7 @@ const ProductDetails = () => {
                 </a>
               </span>
             </div>
-            <p class="leading-relaxed">
-              Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-              sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-              juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-              seitan poutine tumeric. Gastropub blue bottle austin listicle
-              pour-over, neutra jean shorts keytar banjo tattooed umami
-              cardigan.
-            </p>
+            <p class="leading-relaxed">{product.descricao}</p>
             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
               <div class="flex">
                 <span class="mr-3">Color</span>
@@ -181,10 +182,14 @@ const ProductDetails = () => {
             </div>
             <div class="flex">
               <span class="title-font font-medium text-2xl text-gray-900">
-                $58.00
+                <h3>Price: {product.preco}</h3>
               </span>
-              <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                Button
+
+              <button
+                onClick={handleAddToCart}
+                class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+              >
+                <Link to="/Cart">Add to Cart</Link>
               </button>
               <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg

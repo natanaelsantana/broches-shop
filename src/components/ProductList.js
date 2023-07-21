@@ -76,13 +76,14 @@ const Products = () => {
                 key={product._id}
               >
                 <Link to={`/product/${product._id}`}>
+                  <h3 className="text-center font-semibold">{product.nome}</h3>
+
                   <img
                     className="hover:grow hover:shadow-lg"
-                    src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+                    src="https://as1.ftcdn.net/v2/jpg/02/25/61/42/1000_F_225614243_qdF4cO57yfihmCFsx6G24ZxJxa7OuAQb.jpg"
                     alt=""
                   />
                   <div className="pt-3 flex items-center justify-between">
-                    <h3>{product.name}</h3>
                     <p className="pt-1 text-gray-900">
                       Preço: R$
                       {product.preco ? product.preco.toFixed(2) : 'N/A'}
