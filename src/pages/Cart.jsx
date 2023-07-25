@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { useCartContext } from '../components/CartContext';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../components/cartSlice.js';
 
 const Cart = () => {
-  const { cartItems } = useCartContext();
-  const { removeFromCart } = useCartContext();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
+
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto mt-10">
@@ -31,9 +33,14 @@ const Cart = () => {
             <div>
               <ul>
                 {cartItems.map((item) => (
-                  <li key={item.id}>
+                  <li key={item._id}>
                     <span>{item.nome}</span>
-                    <button onClick={() => removeFromCart(item.id)}>
+                    <img
+                      class="lg:w-1/6 object-cover object-center rounded border border-gray-200"
+                      src="https://as1.ftcdn.net/v2/jpg/02/25/61/42/1000_F_225614243_qdF4cO57yfihmCFsx6G24ZxJxa7OuAQb.jpg"
+                      alt=""
+                    ></img>
+                    <button onClick={() => dispatch(removeFromCart(item._id))}>
                       Remove
                     </button>
                   </li>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useCartContext } from '../components/CartContext';
+import { useParams } from 'react-router-dom';
+import { addToCart } from '../components/cartSlice.js';
+import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
@@ -10,8 +10,7 @@ const URI = 'https://broches.onrender.com/api/broches';
 const ProductDetails = () => {
   const { _id } = useParams();
   const [product, setProduct] = useState(null);
-  const navigate = useNavigate();
-  const { addToCart } = useCartContext();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -30,9 +29,9 @@ const ProductDetails = () => {
   }
 
   const handleAddToCart = () => {
-    addToCart(product);
-    navigate('/cart');
+    dispatch(addToCart(product));
   };
+
   return (
     <div class="text-gray-700 body-font overflow-hidden bg-white">
       <div class="container px-5 py-24 mx-auto">
@@ -185,12 +184,13 @@ const ProductDetails = () => {
                 <h3>Price: {product.preco}</h3>
               </span>
 
-              <button
+              <a
+                href="/cart"
                 onClick={handleAddToCart}
                 class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
               >
-                <Link to="/Cart">Add to Cart</Link>
-              </button>
+                Add to Cart
+              </a>
               <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg
                   fill="currentColor"
