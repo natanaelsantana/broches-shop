@@ -1,12 +1,14 @@
-// store.js
-import { createStore, combineReducers } from 'redux';
-import cartReducer from './cartReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer from '../components/cartSlice';
 
-const rootReducer = combineReducers({
-  cart: cartReducer,
-  // Outros reducers podem ser adicionados aqui, se necessário
+const persistedCart = localStorage.getItem('cart');
+const preloadedState = persistedCart ? { cart: JSON.parse(persistedCart) } : {};
+
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+  preloadedState, // Configura o estado inicial do carrinho com o valor do localStorage
 });
-
-const store = createStore(rootReducer);
 
 export default store;
