@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from './Loading';
 //import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -22,7 +23,11 @@ const Products = () => {
   }, []);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   return (
