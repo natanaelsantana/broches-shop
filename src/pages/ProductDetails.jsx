@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../components/cartSlice.js';
 import { useDispatch } from 'react-redux';
+import OneLoad from '../components/OneProductLoad.jsx';
 
 import axios from 'axios';
 
@@ -25,7 +26,11 @@ const ProductDetails = () => {
   }, [_id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <OneLoad />
+      </div>
+    );
   }
 
   const handleAddToCart = () => {
