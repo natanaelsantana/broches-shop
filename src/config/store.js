@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from '../components/cartSlice';
+import cartReducer from '../config/cartSlice';
 
 const persistedCart = localStorage.getItem('cart');
 const preloadedState = persistedCart ? { cart: JSON.parse(persistedCart) } : {};
