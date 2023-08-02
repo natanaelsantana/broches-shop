@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Olá pessoal! Este é meu primeiro projeto em React.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é minha primeira experiência desenvolvendo um projeto por conta própria.
+Sem seguir tutoriais de ponta a ponta no youtube para fazê-lo.
 
-## Available Scripts
+Este projeto é integrado ao meu projeto "broches-api" que serve de "alimento" para o Ecommerce 
+Detalhes sobre a API em: https://github.com/natanaelsantana/broches-api
 
-In the project directory, you can run:
 
-### `npm start`
+### Mas Natanael, do que se trata esse projeto?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Esse projeto foi inspirado em uma ideia da minha parceira. Ela é simplesmente obceada por broches.
+Então pensei, e se eu criasse um ecommerce só para a venda desses produtos? Oferecendo a possibilidade de comercialização de produtos unicos 
+Decidi colocar a mão na massa, achando que seria algo simples mas tem sido bem desafiador! 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Atualmente já desenvolvi boa parte das páginas principais do Ecommerce
 
-### `npm test`
+## Neste projeto você encontra as principais tecnologias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React.js
+- Redux
+- Express
+- MongoDB
+- Tailwind Css
 
-### `npm run build`
+## Mas o que falta para você fazer o deploy deste projeto? 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Lógica para cadastro e login
+- Página para vendedor e funcionalidade de fazer upload de imagens (Incluindo método para filtrar conteúdo explícito) 
+- Implementação de página de pagamento e métodos de pagamento (pretendo usar o Stripe)
+- Opções de perfil como alterar senha, ver comprar anteriores e afins
+- Opção para favoritar produtos e olhar favoritos
+- Página para recuperação de senha 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## E o que mais você pretende incluir? 
+- Pretendo adicionar um chat entre comprador e vendedor
+- Área onde as pessoas podem fazer trocas de broches, como comunidade.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Imagens da aplicação: 
 
-### `npm run eject`
+- Homepage
+  
+![image](https://github.com/natanaelsantana/broches-shop/assets/119079322/81bd1a37-e58f-4fb9-9cfa-dee226ad654c)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Detalhes de produto
+  
+![image](https://github.com/natanaelsantana/broches-shop/assets/119079322/30677494-f606-4ee9-a77c-24ba1effaa7e)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Carrinho
+  
+![image](https://github.com/natanaelsantana/broches-shop/assets/119079322/df93124e-e637-4089-8615-cc2a8a2b09c8)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Login
+  
+![image](https://github.com/natanaelsantana/broches-shop/assets/119079322/245b06be-db58-4ffc-b5b7-fbcebc315907)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Cadastro
+  
+![image](https://github.com/natanaelsantana/broches-shop/assets/119079322/5f6872b7-deec-4f2a-8670-e40300270cfc)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
