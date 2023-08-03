@@ -45,8 +45,8 @@ const Cadastro = () => {
         },
       );
 
-      setMessage(response.data.message);
-      navigate('/login');
+      setMessage(response.data);
+      navigate('/confirm');
     } catch (err) {
       setMessage('Erro no cadastro', err);
     }
