@@ -7,6 +7,7 @@ import ProductDetails from '../src/frontend/pages/ProductDetails';
 import Cart from '../src/frontend/pages/Cart';
 import Header from './frontend/components/Header';
 import Footer from './frontend/components/Footer';
+import Confirm from './frontend/pages/Confirm';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/resumo" element={<Resumo />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/confirmation" element={<Confirm />} />
             <Route path="/cadastro" element={<Cadastro />} />
           </Routes>
         </main>
