@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.json());
+app.use(cors());
 
-// Rotas de autenticação
+app.use(express.json());
+app.use('/api/auth', authRoutes);
 
 main().catch((err) => console.log(err));
 
@@ -23,8 +25,6 @@ async function main() {
     process.exit(1); // Exit the process with an error code
   }
 }
-
-app.use('/api/auth', authRoutes);
 
 app.listen(3001, () => {
   console.log(`Servidor rodando na porta 3001`);

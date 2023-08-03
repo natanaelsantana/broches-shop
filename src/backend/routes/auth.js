@@ -9,6 +9,15 @@ const router = express.Router();
 
 router.post('/cadastro', async (req, res) => {
   try {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Max-Age', '1800');
+    res.setHeader('Access-Control-Allow-Headers', 'content-type');
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'PUT, POST, GET, DELETE, PATCH, OPTIONS',
+    );
+
     const { name, email, password } = req.body;
 
     const userExists = await User.findOne({ email });
@@ -27,7 +36,7 @@ router.post('/cadastro', async (req, res) => {
   }
 });
 
-router.post('/login', async function (req, res) {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
