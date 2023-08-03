@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-require('dotenv').config();
+import { useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
   const [name, setName] = useState('');
@@ -10,6 +10,7 @@ const Cadastro = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const navigate = useNavigate();
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
@@ -45,6 +46,7 @@ const Cadastro = () => {
       );
 
       setMessage(response.data.message);
+      navigate('/login');
     } catch (err) {
       setMessage('Erro no cadastro', err);
     }

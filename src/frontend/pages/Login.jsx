@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const navigate = useNavigate();
 
   const handleToggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -18,10 +15,6 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    /* if (password !== user.password) {
-      <p>Senha incorreta</p>;
-    }*/
 
     try {
       const data = {
@@ -40,8 +33,9 @@ const Login = () => {
       );
 
       setMessage(response.data.message);
+      navigate('/');
     } catch {
-      setMessage('Erro no login');
+      setMessage('Error: Credencials invalid');
     }
   };
 
@@ -83,7 +77,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="**********"
                 ></input>
               </div>
@@ -132,6 +126,7 @@ const Login = () => {
                 </a>
               </p>
             </form>
+            {message && <p>{message}</p>}
           </div>
         </div>
       </section>
