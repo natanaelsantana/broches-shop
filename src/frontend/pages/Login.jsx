@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordChange = (e) => {
@@ -11,6 +14,35 @@ const Login = () => {
 
   const handleToggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    /* if (password !== user.password) {
+      <p>Senha incorreta</p>;
+    }*/
+
+    try {
+      const data = {
+        email,
+        password,
+      };
+
+      const response = await axios.post(
+        'http://localhost:3001/api/auth/login',
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      setMessage(response.data.message);
+    } catch {
+      setMessage('Erro no login');
+    }
   };
 
   return (
@@ -23,7 +55,7 @@ const Login = () => {
                 Sign in
               </h2>
             </div>
-            <form action="">
+            <form action="post" onSubmit={handleLogin}>
               {/*Campo de verificação de email*/}
               <div className="mb-6">
                 <label className="font-sans block mb-2 font-bold" for="">
@@ -33,6 +65,8 @@ const Login = () => {
                   className="inline-block w-full p-4 leading-6 text-lg font-normal bg-white shadow border-2 border-gray-400 rounded"
                   type="email"
                   placeholder="Example@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
 
@@ -49,7 +83,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   id="password"
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={(e) => setPassword(e.target)}
                   placeholder="**********"
                 ></input>
               </div>
@@ -85,11 +119,12 @@ const Login = () => {
                 </div>
               </div>
 
-              <Link to="/">
-                <button className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700">
-                  Sign in
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700"
+              >
+                Sign in
+              </button>
               <p className="text-center font-medium">
                 Don&rsquo;t have an account?{' '}
                 <a className="text-red-500 hover:underline" href="/Cadastro">

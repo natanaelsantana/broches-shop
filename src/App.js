@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
-import Resumo from './pages/Resumo';
-import Home from '../src/pages/Home';
-import ProductDetails from '../src/pages/ProductDetails';
-import Cart from '../src/pages/Cart';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Login from './frontend/pages/Login';
+import Cadastro from './frontend/pages/Cadastro';
+import Resumo from './frontend/pages/Resumo';
+import Home from '../src/frontend/pages/Home';
+import ProductDetails from '../src/frontend/pages/ProductDetails';
+import Cart from '../src/frontend/pages/Cart';
+import Header from './frontend/components/Header';
+import Footer from './frontend/components/Footer';
 
 const App = () => {
   return (

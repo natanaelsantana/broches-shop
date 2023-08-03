@@ -1,32 +1,53 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+require('dotenv').config();
 
 const Cadastro = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(true);
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordMatch(e.target.value === confirmPassword);
-  };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
     setPasswordMatch(e.target.value === password);
   };
 
-  const handleSubmit = (e) => {
+  const handleToggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleCadastro = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       <p>Senhas não coincidem</p>;
     }
-  };
 
-  const handleToggleShowPassword = () => {
-    setShowPassword(!showPassword);
+    try {
+      const data = {
+        name,
+        email,
+        password,
+      };
+
+      const response = await axios.post(
+        'http://localhost:3001/api/auth/cadastro',
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      setMessage(response.data.message);
+    } catch (err) {
+      setMessage('Erro no cadastro', err);
+    }
   };
 
   return (
@@ -39,7 +60,7 @@ const Cadastro = () => {
                 Create your account!
               </h2>
             </div>
-            <form action="" onSubmit={handleSubmit}>
+            <form action="post" onSubmit={handleCadastro}>
               {/*Campo de verificação de email*/}
               <div className="mb-6">
                 <label
@@ -52,6 +73,8 @@ const Cadastro = () => {
                   className="inline-block w-full p-4 leading-6 text-lg font-normal bg-white shadow border-2 border-gray-400 rounded"
                   type="email"
                   placeholder="Example@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
 
@@ -66,6 +89,8 @@ const Cadastro = () => {
                   className="inline-block w-full p-4 leading-6 text-lg font-normal bg-white shadow border-2 border-gray-400 rounded"
                   type="text"
                   placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 ></input>
               </div>
 
@@ -82,7 +107,9 @@ const Cadastro = () => {
                   type={showPassword ? 'text' : 'password'}
                   id="password"
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   placeholder="**********"
                 ></input>
               </div>
@@ -131,24 +158,22 @@ const Cadastro = () => {
                 </div>
               </div>
 
-              <Link to="/">
-                <button
-                  type="submit"
-                  className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700"
-                >
-                  Register!
-                </button>
-              </Link>
-
-              <div className="w-full lg:w-auto px-4 justify-center">
-                <a
-                  className="inline-block font-semibold hover:underline"
-                  href="/"
-                >
-                  Forgot your password? Not a problem!
-                </a>
-              </div>
+              <button
+                type="submit"
+                className="inline-block w-full py-4 px-6 mb-6 text-center text-lg text-white leading-6 font-medium bg-gray-800 hover:bg-gray-100 border-3 hover:text-black shadow rounded transition duration-700"
+              >
+                Register!
+              </button>
             </form>
+            {message && <p>{message}</p>}
+            <div className="w-full lg:w-auto px-4 justify-center">
+              <a
+                className="inline-block font-semibold hover:underline"
+                href="/"
+              >
+                Forgot your password? Not a problem!
+              </a>
+            </div>
           </div>
         </div>
       </section>
