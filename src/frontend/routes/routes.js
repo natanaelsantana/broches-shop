@@ -12,7 +12,7 @@ import RecoverPassword from './frontend/pages/RecoverPassword';
 import PrivateRoute from './frontend/utils/PrivateRoutes';
 import UserSettings from './frontend/pages/UserSettings';
 
-const App = () => {
+const UserRoutes = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <BrowserRouter>
@@ -44,4 +44,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default UserRoutes;
