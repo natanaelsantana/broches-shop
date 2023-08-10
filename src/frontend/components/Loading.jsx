@@ -8,7 +8,7 @@ const Loading = () => {
       <div
         key={i}
         class="p-4 bg-white rounded-lg overflow-hidden shadow hover:shadow-md rounded-lg"
-        style={{ width: '350px', height: '250px' }}
+        style={{ width: '300px', height: '250px' }}
       >
         <div class="animate-pulse flex space-x-4">
           <div class="flex-1 space-y-4 py-1">

@@ -1,15 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true, // Isso permite o envio de cookies e cabeçalhos de autorização
+  }),
+);
 
 app.use(express.json());
 app.use('/api/auth', authRoutes);
+app.use(cookieParser());
 
 main().catch((err) => console.log(err));
 

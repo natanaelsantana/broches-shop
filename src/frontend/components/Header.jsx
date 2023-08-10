@@ -9,7 +9,7 @@ const Header = () => {
           <div className="order-2 md:order-1">
             <Link
               className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
-              to="/"
+              to="/settings"
             >
               Casa dos Broches
             </Link>

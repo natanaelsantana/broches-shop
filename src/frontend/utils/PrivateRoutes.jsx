@@ -1,15 +1,31 @@
-import { Route, Navigate } from 'react-router-dom';
+// PrivateRoute.js
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const PrivateRoute = ({ children }) => {
-  const cookie = Cookies.get('jwt');
+const PrivateRoute = ({ element }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const isAuthenticated = false;
+  useEffect(() => {
+    // Verificar o cookie de autenticação
+    const cookie = Cookies.get('jwt');
+    const isAuthenticated = !!cookie;
+
+    if (isAuthenticated) {
+      console.log(cookie);
+      setIsAuthenticated(true);
+    } else {
+      console.log(cookie);
+
+      return () => {
+        <Navigate to="/login" />;
+      };
+    }
+  }, []);
 
   if (isAuthenticated) {
-    return children;
+    return element;
   } else {
-    console.log(cookie);
     return <Navigate to="/login" />;
   }
 };

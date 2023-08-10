@@ -35,14 +35,6 @@ const Register = async (req, res) => {
 
 const Login = async (req, res) => {
   try {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Max-Age', '1800');
-    res.setHeader('Access-Control-Allow-Headers', 'content-type');
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'PUT, POST, GET, DELETE, PATCH, OPTIONS',
-    );
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -55,11 +47,11 @@ const Login = async (req, res) => {
       return res.status(400).json({ error: 'Senha inválida' });
     }
 
-    generateToken(res, user._id);
+    const token = generateToken(res, user._id);
     res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
+      message: 'success in login',
+      token: token,
+      userId: user._id,
     });
   } catch (err) {
     res.status(500).json({ error: 'Falha no login' });

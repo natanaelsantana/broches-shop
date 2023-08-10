@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 const uri = process.env.URL;
 
-async function getProductDetails(idUnico) {
+async function getProductDetails(_id) {
   const client = new MongoClient(uri);
 
   try {
@@ -11,7 +11,7 @@ async function getProductDetails(idUnico) {
     const database = client.db('<database-name>');
     const collection = database.collection('<collection-name>');
 
-    const product = await collection.findOne({ idUnico });
+    const product = await collection.findOne({ _id });
 
     return product;
   } finally {
@@ -20,4 +20,3 @@ async function getProductDetails(idUnico) {
 }
 
 module.exports = getProductDetails;
-
