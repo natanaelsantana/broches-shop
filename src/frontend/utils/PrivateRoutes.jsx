@@ -1,33 +1,43 @@
-// PrivateRoute.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const PrivateRoute = ({ element }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar o cookie de autenticação
-    const cookie = Cookies.get('jwt');
-    const isAuthenticated = !!cookie;
+    const checkAuthentication = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:3001/api/auth/authentication',
+          {
+            withCredentials: true,
+          },
+        );
 
-    if (isAuthenticated) {
-      console.log(cookie);
-      setIsAuthenticated(true);
-    } else {
-      console.log(cookie);
+        if (response.status === 200) {
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        setIsAuthenticated(false);
+        console.log(error);
+      } finally {
+        // Set loading to false once the authentication check is completed
+        setIsLoading(false);
+      }
+    };
 
-      return () => {
-        <Navigate to="/login" />;
-      };
-    }
+    checkAuthentication();
   }, []);
 
-  if (isAuthenticated) {
-    return element;
-  } else {
-    return <Navigate to="/login" />;
+  // If the authentication check is still loading, you can render a loading indicator here
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
+
+  // Once the authentication check is completed, render the element if authenticated, or redirect to the "/login" page
+  return isAuthenticated ? element : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;
