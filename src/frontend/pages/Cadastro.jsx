@@ -36,7 +36,7 @@ const Cadastro = () => {
       };
 
       const response = await axios.post(
-        'http://localhost:3001/api/auth/cadastro',
+        'http://localhost:3001/api/auth/register',
         data,
         {
           headers: {
@@ -46,7 +46,7 @@ const Cadastro = () => {
       );
 
       setMessage(response.data);
-      navigate('/confirm');
+      navigate('/');
     } catch (err) {
       setMessage('Erro no cadastro', err);
     }
