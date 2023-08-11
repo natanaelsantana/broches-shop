@@ -3,6 +3,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const generateToken = require('../utils/generateToken');
 const saltRounds = 12;
+const jwt = require('jsonwebtoken');
 
 const Register = async (req, res) => {
   try {
@@ -47,28 +48,64 @@ const Login = async (req, res) => {
       return res.status(400).json({ error: 'Senha inválida' });
     }
 
-    const token = generateToken(res, user._id);
+    generateToken(res, user._id);
     res.status(201).json({
       message: 'success in login',
-      token: token,
-      userId: user._id,
     });
   } catch (err) {
     res.status(500).json({ error: 'Falha no login' });
   }
 };
 
+const Authentication = async (req, res, next) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log('Decoded token:', decoded);
+
+        const user = await User.findById(decoded.userId);
+        console.log('User from database:', user);
+
+        if (user) {
+          res.status(200).json({ message: 'Sucesso' });
+        } else {
+          console.log('User not found in the database');
+          return res
+            .status(401)
+            .json({ error: 'Unauthorized, user not found' });
+        }
+      } catch (error) {
+        console.error('JWT verification error:', error);
+        return res.status(401).json({ error: 'Unauthorized, invalid token' });
+      }
+    } else {
+      return res.status(401).json({ error: 'Unauthorized, token missing' });
+    }
+  } catch (error) {
+    console.error('Authentication error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 const Logout = async (req, res) => {
   try {
+    res.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
     res.cookie('jwt', '', {
       httpOnly: true,
       expires: new Date(0),
     });
 
     res.status(200).json({ message: 'logged out' });
-  } catch {
+  } catch (error) {
+    console.error('Error during logout:', error);
+
     res.status(500).json({ error: 'Falha no logout' });
   }
 };
 
-module.exports = { Register, Login, Logout };
+module.exports = { Register, Login, Logout, Authentication };
