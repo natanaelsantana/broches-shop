@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
 const Login = () => {
   const [password, setPassword] = useState('');
@@ -33,18 +32,8 @@ const Login = () => {
           withCredentials: true, // Isso permite que o cliente envie cookies
         },
       );
-
-      const { token } = response.data;
-      //console.log('Token recebido:', token);
-
-      if (token) {
-        const cookie = Cookies.set('jwt', token, { expires: 2 });
-        setMessage(response.data.message);
-        console.log(cookie);
-        navigate('/');
-      } else {
-        console.log('Cookie inexistente');
-      }
+      setMessage(response.data.message);
+      navigate('/');
     } catch {
       setMessage('Error: Credencials invalid');
     }
@@ -132,9 +121,9 @@ const Login = () => {
               </button>
               <p className="text-center font-medium">
                 Don&rsquo;t have an account?{' '}
-                <Link to="/Cadastro" className="text-red-500 hover:underline">
+                <a href="/Cadastro" className="text-red-500 hover:underline">
                   Sign up
-                </Link>
+                </a>
               </p>
             </form>
             {message && <p>{message}</p>}

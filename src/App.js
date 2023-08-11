@@ -11,6 +11,7 @@ import Confirm from './frontend/pages/Confirm';
 import RecoverPassword from './frontend/pages/RecoverPassword';
 import PrivateRoute from './frontend/utils/PrivateRoutes';
 import UserSettings from './frontend/pages/UserSettings';
+import Logout from './frontend/pages/Logout';
 
 const App = () => {
   return (
@@ -31,11 +32,12 @@ const App = () => {
             />
             <Route
               path="/resumo"
-              element={
-                <PrivateRoute>
-                  <Resumo />
-                </PrivateRoute>
-              }
+              element={<PrivateRoute element={<Resumo />} />}
+            />
+
+            <Route
+              path="/logout"
+              element={<PrivateRoute element={<Logout />} />}
             />
 
             <Route path="/recoverPassword" element={<RecoverPassword />} />
