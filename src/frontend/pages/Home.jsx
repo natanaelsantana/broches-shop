@@ -1,6 +1,5 @@
 import React from 'react';
-
-//Routers
+import Header from '../components/Header';
 
 //Principal components
 import Products from '../components/ProductList';
@@ -8,6 +7,7 @@ import Products from '../components/ProductList';
 const Home = () => {
   return (
     <div>
+      <Header />
       <Products />
     </div>
   );

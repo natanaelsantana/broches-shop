@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import Header from '../components/Header';
 import OneLoad from '../components/OneProductLoad.jsx';
 import { addToCart } from '../redux/cartSlice.js';
 
@@ -40,6 +41,7 @@ const ProductDetails = () => {
 
   return (
     <div class="text-gray-700 body-font overflow-hidden bg-white">
+      <Header />
       <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img

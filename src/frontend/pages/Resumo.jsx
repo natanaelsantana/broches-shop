@@ -1,7 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
 
 const Resumo = () => {
-  return <div>Resumo</div>;
+  return (
+    <div>
+      <Header />
+      <p>Resumo</p>
+    </div>
+  );
 };
 
 export default Resumo;

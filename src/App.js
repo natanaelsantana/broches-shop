@@ -5,7 +5,6 @@ import Resumo from './frontend/pages/Resumo';
 import Home from '../src/frontend/pages/Home';
 import ProductDetails from '../src/frontend/pages/ProductDetails';
 import Cart from '../src/frontend/pages/Cart';
-import Header from './frontend/components/Header';
 import Footer from './frontend/components/Footer';
 import Confirm from './frontend/pages/Confirm';
 import RecoverPassword from './frontend/pages/RecoverPassword';
@@ -17,8 +16,6 @@ const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <BrowserRouter>
-        <Header />
-
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />

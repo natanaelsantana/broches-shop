@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
 
 function Logout() {
   const [message, setMessage] = useState('');
@@ -35,6 +36,7 @@ function Logout() {
 
   return (
     <div>
+      <Header />
       <h1>Come back soon</h1>
       <p>{message}</p>
       <a href="/">Go to home page</a>
