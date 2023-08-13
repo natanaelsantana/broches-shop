@@ -84,7 +84,7 @@ const Cart = () => {
                     </div>
                     <h3 className="text-center w-1/5">{item.preco}</h3>
                     <h3 className="text-center w-1/5">
-                      {item.preco * quantities[index]}
+                      {(item.preco * quantities[index]).toFixed(2)}
                     </h3>
                   </div>
                 ))}
@@ -137,7 +137,7 @@ const Cart = () => {
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Total cost</span>
-                  <span>{total}</span>
+                  <span>{total.toFixed(2)}</span>
                 </div>
                 <Link
                   className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
