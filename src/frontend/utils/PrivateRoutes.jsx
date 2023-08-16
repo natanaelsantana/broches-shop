@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import OneLoad from '../components/OneProductLoad';
 
 const PrivateRoute = ({ element }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,7 +34,11 @@ const PrivateRoute = ({ element }) => {
 
   // If the authentication check is still loading, you can render a loading indicator here
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <OneLoad />
+      </div>
+    );
   }
 
   // Once the authentication check is completed, render the element if authenticated, or redirect to the "/login" page

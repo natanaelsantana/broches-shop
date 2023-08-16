@@ -92,7 +92,7 @@ const Cart = () => {
 
               <Link
                 to="/"
-                className="flex font-semibold text-indigo-600 text-sm mt-10"
+                className="flex font-semibold text-indigo-600 text-sm mt-8"
               >
                 <svg
                   className="fill-current mr-2 text-indigo-600 w-4"
@@ -134,16 +134,16 @@ const Cart = () => {
               <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">
                 Apply
               </button>
-              <div className="border-t mt-8">
+              <div className="border-t-2 mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Total cost</span>
                   <span>{total.toFixed(2)}</span>
                 </div>
-                <Link
-                  className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-                  to="/resumo"
-                >
-                  Checkout
+
+                <Link to="/checkout">
+                  <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                    Checkout
+                  </button>
                 </Link>
               </div>
             </div>

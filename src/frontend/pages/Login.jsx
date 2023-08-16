@@ -35,7 +35,7 @@ const Login = () => {
       setMessage(response.data.message);
       navigate('/');
     } catch {
-      setMessage('Error: Credencials invalid');
+      setMessage('email or password invalid');
     }
   };
 
@@ -119,6 +119,7 @@ const Login = () => {
               >
                 Sign in
               </button>
+
               <p className="text-center font-medium">
                 Don&rsquo;t have an account?{' '}
                 <a href="/Cadastro" className="text-red-500 hover:underline">
@@ -126,7 +127,10 @@ const Login = () => {
                 </a>
               </p>
             </form>
-            {message && <p>{message}</p>}
+
+            {message && (
+              <p className="text-red-500 font-semibold">*{message}</p>
+            )}
           </div>
         </div>
       </section>

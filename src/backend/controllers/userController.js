@@ -64,10 +64,8 @@ const Authentication = async (req, res, next) => {
     if (token) {
       try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Decoded token:', decoded);
 
         const user = await User.findById(decoded.userId);
-        console.log('User from database:', user);
 
         if (user) {
           res.status(200).json({ message: 'Sucesso' });

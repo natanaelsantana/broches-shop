@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 
-const Resumo = () => {
+const Checkout = () => {
   return (
     <div>
       <Header />
@@ -10,4 +10,4 @@ const Resumo = () => {
   );
 };
 
-export default Resumo;
+export default Checkout;

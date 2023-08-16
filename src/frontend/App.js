@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './frontend/pages/Login';
-import Cadastro from './frontend/pages/Cadastro';
-import Resumo from './frontend/pages/Resumo';
-import Home from '../src/frontend/pages/Home';
-import ProductDetails from '../src/frontend/pages/ProductDetails';
-import Cart from '../src/frontend/pages/Cart';
-import Footer from './frontend/components/Footer';
-import Confirm from './frontend/pages/Confirm';
-import RecoverPassword from './frontend/pages/RecoverPassword';
-import PrivateRoute from './frontend/utils/PrivateRoutes';
-import UserSettings from './frontend/pages/UserSettings';
-import Logout from './frontend/pages/Logout';
+import Login from './pages/Login';
+import Register from './pages/Cadastro';
+import Checkout from './pages/Resumo';
+import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import Footer from './components/Footer';
+import Confirm from './pages/Confirm';
+import RecoverPassword from './pages/RecoverPassword';
+import PrivateRoute from './utils/PrivateRoutes';
+import UserSettings from './pages/UserSettings';
+import Logout from './pages/Logout';
 
 const App = () => {
   return (
@@ -28,8 +28,8 @@ const App = () => {
               element={<PrivateRoute element={<UserSettings />} />}
             />
             <Route
-              path="/resumo"
-              element={<PrivateRoute element={<Resumo />} />}
+              path="/checkout"
+              element={<PrivateRoute element={<Checkout />} />}
             />
 
             <Route
@@ -39,7 +39,7 @@ const App = () => {
 
             <Route path="/recoverPassword" element={<RecoverPassword />} />
             <Route path="/confirmation" element={<Confirm />} />
-            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </main>
         <Footer />
